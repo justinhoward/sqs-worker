@@ -2,10 +2,10 @@
 # frozen_string_literal: true
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'sqs-worker/version'
+require 'sqs_worker/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'sqs-worker'
+  spec.name = 'sqs_worker'
   spec.version = SqsWorker::VERSION
   spec.authors = ['Justin Howard']
   spec.email = ['jmhoward0@gmail.com']

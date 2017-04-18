@@ -7,7 +7,7 @@ A Ruby job runner for AWS SQS
 Add this line to your application's `Gemfile`:
 
 ```ruby
-gem 'sqs-worker'
+gem 'sqs_worker'
 ```
 
 ## Development

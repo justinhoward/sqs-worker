@@ -2,6 +2,6 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
-require 'sqs-worker'
+require 'sqs_worker'
 
 # Do something here
