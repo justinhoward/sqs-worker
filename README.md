@@ -1,6 +1,6 @@
 # SqsWorker
 
-TODO: Gem description goes here
+A Ruby job runner for AWS SQS
 
 ## Installation
 
