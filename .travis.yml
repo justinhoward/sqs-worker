@@ -1,0 +1,16 @@
+language: ruby
+rvm:
+  - 2.3.4
+  - 2.4.1
+deploy:
+  provider: rubygems
+  api_key:
+    secure: "encrypted API key here"
+  gem: sqs-worker
+  on:
+    tags: true
+    repo: justinhoward/sqs-worker
+addons:
+  code_climate:
+    repo_token:
+      secure: "encrypted API key here"
