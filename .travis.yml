@@ -2,15 +2,21 @@ language: ruby
 rvm:
   - 2.3.4
   - 2.4.1
+
+script:
+  - bin/rubocop
+  - bin/rspec --format doc
+
 deploy:
   provider: rubygems
   api_key:
-    secure: "encrypted API key here"
+    secure: "zBsshQJEUjf4d4Mg/ZOXaQA743VMvLCtMwinThA65akJK9LXi6TPaCNLv1tahoCFrGQw6rfZnf9vsdxdhdccAu2uO+hV8C4+AMb1StsTNwn8Xe53P5ERREzH6DJ1MguPTU3uQIJWxcsKSvb13xbbulF6g2N/VDhKGEHuCqBo/w+GOC90MlTSk87oqrCm5VvEa5mrmNkKMrfItUQ384un7BCN14Hq0c+qcADoIT7LaLIsl2hZ4ESt3hgtOlCdks+LTTAHgEotObMkmgwRmI6K2TmBVbK/6p7BlmWsMX9hqAwjnHe1KQa2VNM6C4BCD6dFDpNvVq9g98p+foR3uGFtGlgY1FPZs3aBZGEn/947o8maankAziMIffHotA1Z7uotaXVwR7ahtkQrrkpgAD6ysgNrwOzgXdASGJj2WQPqhBEYP4+zVlz2UkM6ETrAsaa8Hhi7C3pxDllm87UwsYE0Gah43uqrjpdYBbE9AT650ZE9pM9kjiemZE0Dbphx67SGEsKbE24EGBDQL+UDgCZzIlSR2hNlvMxwA+qpi3FTb1ZAtIeo31ZGq/snZL5DhH6NpF5I5gMXbRJriUXHAOuGIfPO5oCUHKOmZ8yoNt4d2MftY2RC1hN2BQlYpS6uXvZPjfeevUPG7rw5ajEKjlN4VsW0PlgEqeBepWDc+DjML8s="    secure: "encrypted API key here"
   gem: sqs-worker
   on:
     tags: true
     repo: justinhoward/sqs-worker
+
 addons:
   code_climate:
     repo_token:
-      secure: "encrypted API key here"
+      secure: "STeIrj+LFT5Z6nHk89my7bBQHsD7OVLyHuNSF6Z4rXa+g4SJiXzediBuKhiLjI7O06LStWaEyO3sZA8ZepuFK7L1aTg1r38KFCMC6AVyvAfL+PTQrfZkntwKkEjF7G7BRf3COF8ttBZ6vgGJeNuRiJ3NkXLjbHYtXseeF7TOpntkmbAWDCyeNDsb3DuirrOySoJgz1g7yrFJbYPxYAGS938ZroHRoXVJ3HwyBitcF8PMR5XLQYDU8A2zD32PW5ATCeI4X+DJJMi6Co32gFoUj/HF5EZxgv34aELvrFkELY1JOh2V6i8wgr5iJqjbPbXULlAScvtItH17TcC/mPHkHfYR5ozv/9+0RAJ5YjxSdh21pe22vQ/PoLnUViwvmhP/GmgcHoDa4BmOFQViEzhWmjAbY/eAuWKwEcuCiLdljrNUFKLyK0Ya/KLT7Va/z/Fk42/FVUXKKbCi/7MBjWOCrzrktPg12NALOJTM/JhTZq3pOQujZPj/A+04VFqA4bsTqoMHexJ3KUh3c605oKPow1c9d3RwbB9DWl7q4Xkq+7uJwqybJcy8yzWTAg8KfQWYDbUA3BmjApIB5r2Z9j2fjpr3tFzHe1hqJYdgNdRy7bwx9SWi1heCdTRIhKbSMYenlCvpApCFwZIPRKMeh3uFu25ouux4kEyT5xEIk1E+H1c="
