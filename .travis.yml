@@ -2,6 +2,8 @@ language: ruby
 rvm:
   - 2.3.4
   - 2.4.1
+env:
+  - COVERAGE=1
 
 script:
   - bin/rubocop
@@ -15,6 +17,9 @@ deploy:
   on:
     tags: true
     repo: justinhoward/sqs-worker
+
+after_success:
+  - bin/codeclimate-test-reporter
 
 addons:
   code_climate:
