@@ -21,9 +21,12 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_runtime_dependency 'aws-sdk', '~> 2.9.0'
+
   spec.add_development_dependency 'bundler', '~> 1.12'
   spec.add_development_dependency 'byebug', '~> 9.0'
   spec.add_development_dependency 'codeclimate-test-reporter', '~> 1.0'
+  spec.add_development_dependency 'activejob', '~> 4'
   spec.add_development_dependency 'rubocop', '~> 0.40'
   spec.add_development_dependency 'rspec', '~> 3.4'
   spec.add_development_dependency 'simplecov', '~> 0.12'
