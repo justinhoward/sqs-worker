@@ -4,9 +4,6 @@ AllCops:
 Lint/EndAlignment:
   EnforcedStyleAlignWith: variable
 
-Style/AlignParameters:
-  EnforcedStyle: with_fixed_indentation
-
 Style/Documentation:
   Enabled: false
 
@@ -17,11 +14,20 @@ Style/FrozenStringLiteralComment:
   Enabled: true
   EnforcedStyle: always
 
-Style/IndentArray:
+Style/GuardClause:
+  Enabled: false
+
+Style/RaiseArgs:
+  Enabled: false
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/IndentArray:
   EnforcedStyle: consistent
 
-Style/IndentHash:
+Layout/IndentHash:
   EnforcedStyle: consistent
 
-Style/MultilineMethodCallIndentation:
+Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented

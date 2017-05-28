@@ -4,4 +4,5 @@
 require 'bundler/setup'
 require 'sqs_worker'
 
-# Do something here
+args = SqsWorker::Cli::Args.new(ARGV)
+Worker.new(args.queue).poll
