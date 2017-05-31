@@ -4,11 +4,15 @@ module SqsWorker
   module Serializer
     class Json
       def serialize(args)
-        JSON.dump(args)
+        JSON.generate(args)
+      rescue JSON::JSONError
+        raise SerializerError, 'Could not serialize args to JSON'
       end
 
-      def unserialize(body)
+      def deserialize(body)
         JSON.parse(body)
+      rescue JSON::JSONError
+        raise SerializerError, 'Could not deserialize args from JSON'
       end
     end
   end

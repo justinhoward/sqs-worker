@@ -8,4 +8,5 @@ end
 require 'sqs_worker/error/invalid_serializer_error'
 require 'sqs_worker/error/missing_attribute_error'
 require 'sqs_worker/error/missing_class_error'
+require 'sqs_worker/error/serializer_error'
 require 'sqs_worker/error/unsupported_delay_error'

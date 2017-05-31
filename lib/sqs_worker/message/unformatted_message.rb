@@ -41,7 +41,7 @@ module SqsWorker
       end
 
       def args
-        @args ||= @serializer.unserialize(@sqs_message[:body])
+        @args ||= @serializer.deserialize(@sqs_message[:body])
       end
 
       def attrs
