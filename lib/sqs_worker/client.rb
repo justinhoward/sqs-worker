@@ -2,14 +2,12 @@
 
 module SqsWorker
   class Client
-    attr_reader :logger
-
     def initialize(
       format: Message::Format.new,
       sqs: Aws::SQS::Client.new
     )
-      @sqs = sqs
       @format = format
+      @sqs = sqs
     end
 
     def queue(name)
