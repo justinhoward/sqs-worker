@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable BlockLength
 RSpec.describe SqsWorker::Serializer::Json do
   let(:json) { described_class.new }
 
@@ -9,7 +8,7 @@ RSpec.describe SqsWorker::Serializer::Json do
   end
 
   it 'deserializes args from JSON' do
-    expect(json.deserialize('[{"foo":"bar"}]')).to eq([{'foo' => 'bar'}])
+    expect(json.deserialize('[{"foo":"bar"}]')).to eq([{ 'foo' => 'bar' }])
   end
 
   it 'throws a SerializerError if given a circular object' do

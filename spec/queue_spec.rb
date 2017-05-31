@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable BlockLength
 RSpec.describe SqsWorker::Queue do
   let(:client) { SqsWorker::Mock::Client.new }
 
