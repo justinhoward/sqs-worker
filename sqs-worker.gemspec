@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.authors = ['Justin Howard']
   spec.email = ['jmhoward0@gmail.com']
 
-  spec.summary = 'Description goes here'
+  spec.summary = 'A job runner for AWS SQS'
   spec.homepage = 'https://github.com/justinhoward/sqs-worker'
 
   spec.files = `git ls-files -z`
