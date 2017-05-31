@@ -1,21 +1,5 @@
 # frozen_string_literal: true
 
-class TestJob
-  attr_accessor :args
-
-  def self.from_args(*args)
-    new(*args)
-  end
-
-  def initialize(*args)
-    @args = args
-  end
-
-  def to_args
-    @args
-  end
-end
-
 # rubocop:disable BlockLength
 RSpec.describe SqsWorker::Client do
   let(:sqs) { Aws::SQS::Client.new(stub_responses: true) }
@@ -33,7 +17,7 @@ RSpec.describe SqsWorker::Client do
     )
     queue = SqsWorker::Queue.new(client, 'planner')
     plan = SqsWorker::Plan.new(
-      TestJob.new(1, 2, 3),
+      SqsWorker::Mock::Job.new(1, 2, 3),
       queue,
       run_at: Time.now + 3
     )
@@ -48,7 +32,7 @@ RSpec.describe SqsWorker::Client do
         },
         'job_class' => {
           data_type: 'String',
-          string_value: 'TestJob'
+          string_value: 'SqsWorker::Mock::Job'
         },
         'sqs_worker_version' => {
           data_type: 'String',
@@ -88,7 +72,7 @@ RSpec.describe SqsWorker::Client do
             },
             'job_class' => {
               data_type: 'String',
-              string_value: 'TestJob'
+              string_value: 'SqsWorker::Mock::Job'
             },
             'serializer_class' => {
               data_type: 'String',
