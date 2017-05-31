@@ -9,7 +9,11 @@ module SqsWorker
       @name = name
     end
 
-    def add(job, run_at: nil)
+    def add(job)
+      @client.execute(Plan.new(job, self))
+    end
+
+    def schedule(job, run_at)
       @client.execute(Plan.new(job, self, run_at: run_at))
     end
 
