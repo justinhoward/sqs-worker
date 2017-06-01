@@ -10,7 +10,7 @@ module SqsWorker
 
       def to_h
         {
-          queue_url: @plan.queue.url,
+          queue_url: @plan.url,
           message_body: @serializer.serialize(@plan.job.to_args),
           message_attributes: attributes,
           delay_seconds: @plan.run_at ? (@plan.run_at - Time.now).ceil : nil

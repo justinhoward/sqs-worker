@@ -2,7 +2,7 @@
 
 # rubocop:disable BlockLength
 RSpec.describe SqsWorker::Queue do
-  let(:client) { SqsWorker::Mock::Client.new }
+  let(:client) { SqsWorker::Mock::Client.new(account: 'abc123') }
 
   it 'executes a plan when adding a job' do
     queue = described_class.new(client, 'test')
@@ -10,10 +10,12 @@ RSpec.describe SqsWorker::Queue do
 
     queue.add(job)
 
-    expect(client.calls).to match([[:execute, instance_of(SqsWorker::Plan)]])
-    expect(client.calls[0][1].job).to eq(job)
-    expect(client.calls[0][1].queue).to eq(queue)
-    expect(client.calls[0][1].run_at).to eq(nil)
+    expect(client.calls[0]).to eq([:url, 'test'])
+    expect(client.calls[1]).to match([:execute, instance_of(SqsWorker::Plan)])
+    expect(client.calls[1][1].job).to eq(job)
+    expect(client.calls[1][1].url)
+      .to eq('https://queue.amazonaws.com/abc123/test')
+    expect(client.calls[1][1].run_at).to eq(nil)
   end
 
   it 'schedules a plan' do
@@ -23,10 +25,12 @@ RSpec.describe SqsWorker::Queue do
 
     queue.schedule(job, time)
 
-    expect(client.calls).to match([[:execute, instance_of(SqsWorker::Plan)]])
-    expect(client.calls[0][1].job).to eq(job)
-    expect(client.calls[0][1].queue).to eq(queue)
-    expect(client.calls[0][1].run_at).to eq(time)
+    expect(client.calls[0]).to eq([:url, 'test'])
+    expect(client.calls[1]).to match([:execute, instance_of(SqsWorker::Plan)])
+    expect(client.calls[1][1].job).to eq(job)
+    expect(client.calls[1][1].url)
+      .to eq('https://queue.amazonaws.com/abc123/test')
+    expect(client.calls[1][1].run_at).to eq(time)
   end
 
   it 'asks the client to poll' do

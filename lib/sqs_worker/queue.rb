@@ -10,11 +10,11 @@ module SqsWorker
     end
 
     def add(job)
-      @client.execute(Plan.new(job, self))
+      @client.execute(Plan.new(job, url))
     end
 
     def schedule(job, run_at)
-      @client.execute(Plan.new(job, self, run_at: run_at))
+      @client.execute(Plan.new(job, url, run_at: run_at))
     end
 
     def poll(&block)

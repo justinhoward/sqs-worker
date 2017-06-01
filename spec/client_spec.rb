@@ -11,14 +11,9 @@ RSpec.describe SqsWorker::Client do
   end
 
   it 'executes a plan' do
-    sqs.stub_responses(
-      :get_queue_url,
-      queue_url: 'https://queue.amazonaws.com/123/planner'
-    )
-    queue = SqsWorker::Queue.new(client, 'planner')
     plan = SqsWorker::Plan.new(
       SqsWorker::Mock::Job.new(1, 2, 3),
-      queue,
+      'https://queue.amazonaws.com/123/planner',
       run_at: Time.now + 3
     )
 
