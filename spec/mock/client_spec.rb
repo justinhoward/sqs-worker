@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop: disable BlockLength
 RSpec.describe SqsWorker::Mock::Client do
   it 'records calls to execute' do
     client = described_class.new

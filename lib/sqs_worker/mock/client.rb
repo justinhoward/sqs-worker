@@ -5,9 +5,11 @@ module SqsWorker
     class Client
       attr_reader :calls
       attr_accessor :jobs
+      attr_accessor :observer
 
       def initialize(account: '123456789')
         @account = account
+        @observer = Observer.new
         @calls = []
         @jobs = []
       end
