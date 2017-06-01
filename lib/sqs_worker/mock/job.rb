@@ -3,7 +3,7 @@
 module SqsWorker
   module Mock
     class Job
-      attr_accessor :args, :called
+      attr_accessor :args, :calls
 
       def self.from_args(*args)
         new(*args)
@@ -11,11 +11,11 @@ module SqsWorker
 
       def initialize(*args)
         @args = args
-        @called = 0
+        @calls = 0
       end
 
       def call
-        @called += 1
+        @calls += 1
       end
 
       def to_args

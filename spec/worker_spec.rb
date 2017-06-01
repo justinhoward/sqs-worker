@@ -11,7 +11,7 @@ RSpec.describe SqsWorker::Worker do
     worker = described_class.new(queue)
     worker.poll
 
-    expect(client.jobs[0].called).to eq(1)
-    expect(client.jobs[1].called).to eq(1)
+    expect(client.jobs[0].calls).to eq(1)
+    expect(client.jobs[1].calls).to eq(1)
   end
 end
