@@ -18,7 +18,7 @@ module SqsWorker
     end
 
     def poll(&block)
-      @client.poll(self, &block)
+      @client.poll(url, &block)
     end
 
     def url

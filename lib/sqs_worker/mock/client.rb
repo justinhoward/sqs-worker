@@ -12,17 +12,12 @@ module SqsWorker
         @jobs = []
       end
 
-      def queue(name)
-        @calls << [:queue, name]
-        Queue.new(self, name)
-      end
-
       def execute(plan)
         @calls << [:execute, plan]
       end
 
-      def poll(queue)
-        @calls << [:poll, queue, Proc.new]
+      def poll(url)
+        @calls << [:poll, url, Proc.new]
         @jobs.each { |job| yield job }
       end
 

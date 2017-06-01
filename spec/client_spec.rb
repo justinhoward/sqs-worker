@@ -5,11 +5,6 @@ RSpec.describe SqsWorker::Client do
   let(:sqs) { Aws::SQS::Client.new(stub_responses: true) }
   let(:client) { described_class.new(sqs: sqs) }
 
-  it 'gets a queue' do
-    foo = client.queue('foo')
-    expect(foo.name).to eq('foo')
-  end
-
   it 'executes a plan' do
     plan = SqsWorker::Plan.new(
       SqsWorker::Mock::Job.new(1, 2, 3),
@@ -51,11 +46,6 @@ RSpec.describe SqsWorker::Client do
 
   it 'polls for jobs' do
     sqs.stub_responses(
-      :get_queue_url,
-      queue_url: 'https://queue.amazonaws.com/9876/jobs'
-    )
-
-    sqs.stub_responses(
       :receive_message,
       messages: [
         {
@@ -78,10 +68,8 @@ RSpec.describe SqsWorker::Client do
       ]
     )
 
-    queue = SqsWorker::Queue.new(client, 'jobs')
-
     job = nil
-    client.poll(queue) do |j|
+    client.poll('https://queue.amazonaws.com/9876/jobs') do |j|
       job = j
       throw :stop_polling
     end

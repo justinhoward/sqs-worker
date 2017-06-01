@@ -38,7 +38,9 @@ RSpec.describe SqsWorker::Queue do
     poller = -> {}
     queue.poll(&poller)
 
-    expect(client.calls).to eq([[:poll, queue, poller]])
+    expect(client.calls[0]).to eq([:url, 'test'])
+    expect(client.calls[1])
+      .to eq([:poll, 'https://queue.amazonaws.com/abc123/test', poller])
   end
 
   it 'gets its URL' do
