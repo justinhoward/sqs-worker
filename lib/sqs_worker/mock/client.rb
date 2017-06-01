@@ -4,10 +4,12 @@ module SqsWorker
   module Mock
     class Client
       attr_reader :calls
+      attr_accessor :jobs
 
       def initialize(account: '123456789')
         @account = account
         @calls = []
+        @jobs = []
       end
 
       def queue(name)
@@ -21,6 +23,7 @@ module SqsWorker
 
       def poll(queue)
         @calls << [:poll, queue, Proc.new]
+        @jobs.each { |job| yield job }
       end
 
       def url(name)

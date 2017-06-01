@@ -2,13 +2,12 @@
 
 module SqsWorker
   class Worker
-    def initialize(queue, client = SqsWorker.default_client)
-      @client = client
+    def initialize(queue)
       @queue = queue
     end
 
     def poll
-      @client.poll(@queue, &:call)
+      @queue.poll(&:call)
     end
   end
 end
