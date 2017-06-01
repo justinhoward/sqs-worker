@@ -1,7 +1,7 @@
 language: ruby
 rvm:
-  - 2.3.4
-  - 2.4.1
+  - 2.3
+  - 2.4
 env:
   - COVERAGE=1
 
@@ -9,14 +9,19 @@ script:
   - bin/rubocop
   - bin/rspec --format doc
 
-deploy:
-  provider: rubygems
-  api_key:
-    secure: "zBsshQJEUjf4d4Mg/ZOXaQA743VMvLCtMwinThA65akJK9LXi6TPaCNLv1tahoCFrGQw6rfZnf9vsdxdhdccAu2uO+hV8C4+AMb1StsTNwn8Xe53P5ERREzH6DJ1MguPTU3uQIJWxcsKSvb13xbbulF6g2N/VDhKGEHuCqBo/w+GOC90MlTSk87oqrCm5VvEa5mrmNkKMrfItUQ384un7BCN14Hq0c+qcADoIT7LaLIsl2hZ4ESt3hgtOlCdks+LTTAHgEotObMkmgwRmI6K2TmBVbK/6p7BlmWsMX9hqAwjnHe1KQa2VNM6C4BCD6dFDpNvVq9g98p+foR3uGFtGlgY1FPZs3aBZGEn/947o8maankAziMIffHotA1Z7uotaXVwR7ahtkQrrkpgAD6ysgNrwOzgXdASGJj2WQPqhBEYP4+zVlz2UkM6ETrAsaa8Hhi7C3pxDllm87UwsYE0Gah43uqrjpdYBbE9AT650ZE9pM9kjiemZE0Dbphx67SGEsKbE24EGBDQL+UDgCZzIlSR2hNlvMxwA+qpi3FTb1ZAtIeo31ZGq/snZL5DhH6NpF5I5gMXbRJriUXHAOuGIfPO5oCUHKOmZ8yoNt4d2MftY2RC1hN2BQlYpS6uXvZPjfeevUPG7rw5ajEKjlN4VsW0PlgEqeBepWDc+DjML8s="
-  gem: sqs-worker
-  on:
-    tags: true
-    repo: justinhoward/sqs-worker
+jobs:
+  include:
+    - stage: release
+      rvm: 2.3
+      script: skip
+      deploy:
+        provider: rubygems
+        api_key:
+          secure: "zBsshQJEUjf4d4Mg/ZOXaQA743VMvLCtMwinThA65akJK9LXi6TPaCNLv1tahoCFrGQw6rfZnf9vsdxdhdccAu2uO+hV8C4+AMb1StsTNwn8Xe53P5ERREzH6DJ1MguPTU3uQIJWxcsKSvb13xbbulF6g2N/VDhKGEHuCqBo/w+GOC90MlTSk87oqrCm5VvEa5mrmNkKMrfItUQ384un7BCN14Hq0c+qcADoIT7LaLIsl2hZ4ESt3hgtOlCdks+LTTAHgEotObMkmgwRmI6K2TmBVbK/6p7BlmWsMX9hqAwjnHe1KQa2VNM6C4BCD6dFDpNvVq9g98p+foR3uGFtGlgY1FPZs3aBZGEn/947o8maankAziMIffHotA1Z7uotaXVwR7ahtkQrrkpgAD6ysgNrwOzgXdASGJj2WQPqhBEYP4+zVlz2UkM6ETrAsaa8Hhi7C3pxDllm87UwsYE0Gah43uqrjpdYBbE9AT650ZE9pM9kjiemZE0Dbphx67SGEsKbE24EGBDQL+UDgCZzIlSR2hNlvMxwA+qpi3FTb1ZAtIeo31ZGq/snZL5DhH6NpF5I5gMXbRJriUXHAOuGIfPO5oCUHKOmZ8yoNt4d2MftY2RC1hN2BQlYpS6uXvZPjfeevUPG7rw5ajEKjlN4VsW0PlgEqeBepWDc+DjML8s="
+        gem: sqs-worker
+        on:
+          tags: true
+      repo: justinhoward/sqs-worker
 
 after_success:
   - bin/codeclimate-test-reporter
