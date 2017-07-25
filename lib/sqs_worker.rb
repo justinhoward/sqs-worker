@@ -16,6 +16,7 @@ require 'sqs_worker/version'
 
 require 'sqs_worker/client'
 require 'sqs_worker/error'
+require 'sqs_worker/log_subscriber'
 require 'sqs_worker/message'
 require 'sqs_worker/mock'
 require 'sqs_worker/observer'

@@ -7,11 +7,13 @@ module SqsWorker
     def initialize(
       format: Message::Format.new,
       observer: Observer.new,
-      sqs: Aws::SQS::Client.new
+      sqs: Aws::SQS::Client.new,
+      logger: nil
     )
       @format = format
       @observer = observer
       @sqs = sqs
+      @observer.register(LogSubscriber.new(logger)) if logger
     end
 
     def execute(plan)
