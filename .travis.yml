@@ -11,7 +11,6 @@ script:
 
 jobs:
   include:
-    - script: bin/check-version
     - stage: release
       rvm: 2.3
       script: skip
@@ -22,6 +21,7 @@ jobs:
         gem: sqs-worker
         on:
           tags: true
+          condition: bin/check-version
       repo: justinhoward/sqs-worker
 
 after_success:
