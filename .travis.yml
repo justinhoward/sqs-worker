@@ -11,6 +11,7 @@ script:
 
 jobs:
   include:
+    - script: bin/check-version
     - stage: release
       rvm: 2.3
       script: skip

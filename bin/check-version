@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+root="$(cd "$(dirname "$0")/.." && pwd)"
+tag="$(git describe --abbrev=0)"
+version="$(ruby -r "${root}/lib/sqs_worker/version" -e 'puts SqsWorker::VERSION')"
+test "$tag" = "v${version}"
